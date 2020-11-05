@@ -1,7 +1,9 @@
 package com.example.techasians_appmusic.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +16,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.techasians_appmusic.R;
 import com.example.techasians_appmusic.activity.PlayerActivity;
-import com.example.techasians_appmusic.model.MusicFile;
+import com.example.techasians_appmusic.model.Music;
 
 import java.util.ArrayList;
 
-public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> {
+public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.ViewHolder> {
 
+    public static final int REQUEST_SONG = 123;
     private Context mContext;
-    private ArrayList<MusicFile> mFiles;
+    private ArrayList<Music> mFiles;
 
-    public MusicAdapter(Context mContext, ArrayList<MusicFile> mFiles) {
+    public LocalMusicAdapter(Context mContext, ArrayList<Music> mFiles) {
         this.mContext = mContext;
         this.mFiles = mFiles;
     }
@@ -38,20 +41,27 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        MusicFile music = mFiles.get(position);
+        Music music = mFiles.get(position);
         holder.musicName.setText(music.getTitle());
+        holder.artistName.setVisibility(View.VISIBLE);
+        holder.artistName.setText(music.getArtist());
         if (music.getCover() != null) {
             Glide.with(mContext).load(music.getCover())
+                    .error(R.drawable.cover_art)
                     .into(holder.musicImage);
         } else {
-            holder.musicImage.setImageResource(R.drawable.music_background);
+            holder.musicImage.setImageResource(R.drawable.cover_art);
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                boolean isLocalSong = true;
                 Intent intent = new Intent(mContext, PlayerActivity.class);
-                intent.putExtra("position", position);
-                mContext.startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putInt("posLocalSong", position);
+                bundle.putBoolean("isLocalSong", isLocalSong);
+                intent.putExtra("local", bundle);
+                ((Activity) mContext).startActivityForResult(intent, REQUEST_SONG);
             }
         });
     }
@@ -63,12 +73,14 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView musicName;
+        TextView artistName;
         ImageView musicImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            musicImage = itemView.findViewById(R.id.music_imgage);
+            musicImage = itemView.findViewById(R.id.music_image);
             musicName = itemView.findViewById(R.id.music_name);
+            artistName = itemView.findViewById(R.id.artist_name);
         }
     }
 }

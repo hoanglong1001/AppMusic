@@ -1,26 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
-        app:tabTextColor="@color/colorAccent"
+        style="@style/MyTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:tabIndicator="@drawable/item_tab_indicator"
+        app:tabIndicatorColor="#C6C5C5C5"
         app:tabIndicatorFullWidth="true"
         app:tabIndicatorGravity="center"
-        app:tabIndicator="@drawable/item_tab_indicator"
         app:tabIndicatorHeight="40dp"
-        app:tabIndicatorColor="#07AC9E"
-        android:background="@color/colorPrimaryDark"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        app:tabTextColor="@color/colorPrimaryDark" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_above="@+id/card_rl"
+        android:layout_below="@+id/tab_layout" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="6dp"
+        app:cardCornerRadius="5dp"
+        android:visibility="gone"
+        app:cardElevation="5dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_view_player"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#E9E9E9"
+            android:padding="2dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_cover_art"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp">
+
+                <ImageView
+                    android:id="@+id/img_cover_art"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_launcher_background" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/txt_song_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_toStartOf="@id/img_prev"
+                android:layout_toEndOf="@+id/card_cover_art"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Music Name"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <ImageView
+                android:id="@+id/img_prev"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/img_play_pause"
+                android:src="@drawable/ic_skip_previous_black" />
+
+            <ImageView
+                android:id="@+id/img_play_pause"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/img_next"
+                android:src="@drawable/ic_pause" />
+
+            <ImageView
+                android:id="@+id/img_next"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/ic_skip_next_black" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

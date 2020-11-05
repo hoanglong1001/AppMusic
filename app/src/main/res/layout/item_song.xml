@@ -1,24 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#111111"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/audio_item"
-    android:layout_marginTop="5dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/music_imgage"
-        android:src="@drawable/ic_launcher_background"
-        android:padding="5dp"
-        android:layout_width="60dp"
-        android:layout_height="60dp"/>
-    <TextView
-        android:id="@+id/music_name"
-        android:layout_toEndOf="@+id/music_imgage"
-        android:text="Music Name"
-        android:textColor="@color/colorAccent"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="10dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardphoto"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp">
+
+        <ImageView
+            android:id="@+id/music_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background" />
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_toEndOf="@+id/cardphoto"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/music_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:textSize="14sp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Music Name"
+            android:textColor="@color/colorPrimaryDark" />
+        <TextView
+            android:id="@+id/artist_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="Artist Name"
+            android:textColor="@color/colorPrimaryDark" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/cardphoto"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#A0A2A1" />
 </RelativeLayout>

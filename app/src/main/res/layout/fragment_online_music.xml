@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.OnlineMusicFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/item_search"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_search" />
+
+        <EditText
+            android:id="@+id/onl_search"
+            android:layout_width="match_parent"
+            android:inputType="text"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:background="@android:color/transparent"
+            android:hint="Search" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#A0A2A1" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_onl_music"
+        tools:listitem="@layout/item_song"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

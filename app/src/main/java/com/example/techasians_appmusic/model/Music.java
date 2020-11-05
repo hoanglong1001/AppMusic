@@ -1,18 +1,28 @@
 package com.example.techasians_appmusic.model;
 
-public class MusicFile {
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class Music implements Serializable {
+    @SerializedName("url")
     private String path;
+    @SerializedName("name")
     private String title;
+    @SerializedName("duration")
+    private String duration;
+    @SerializedName("id")
+    private String id;
     private String artist;
     private String album;
-    private String duration;
-    private String id;
     private String cover;
+    private int index;
 
-    public MusicFile() {
+    public Music() {
     }
 
-    public MusicFile(String path, String title, String artist, String album, String duration, String id, String cover) {
+    public Music(int index, String path, String title, String artist, String album, String duration, String id, String cover) {
+        this.index = index;
         this.path = path;
         this.title = title;
         this.artist = artist;
@@ -76,5 +86,13 @@ public class MusicFile {
 
     public void setCover(String cover) {
         this.cover = cover;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 }
