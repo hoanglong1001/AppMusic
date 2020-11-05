@@ -45,6 +45,7 @@ import static com.example.techasians_appmusic.adapter.LocalMusicAdapter.REQUEST_
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, MediaPlayer.OnCompletionListener {
 
     public static final int REQUEST_CODE = 1;
+    public static final int REQUEST = 2;
     private CardView cardRl;
     private RelativeLayout rlViewPlayer;
     private ImageView imgCoverArt;
